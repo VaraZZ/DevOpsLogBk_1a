@@ -1,4 +1,4 @@
-# DevOp Pipelines - Practical four
+# DevOp Pipelines - Practical 
 
 ## Introduction to Continuous Integration (CI) with GitHub Actions
 
