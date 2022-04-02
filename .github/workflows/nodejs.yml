@@ -42,7 +42,7 @@ jobs:
     - name:  nmp install and test
       run: |
         nmp install
-        nmo test
+        nmp test
       env:
         CI: true
       
