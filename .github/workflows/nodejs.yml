@@ -7,43 +7,42 @@ on: [ push ]
    
 
 jobs:
-  build:
+   build:
     runs-on: ubuntu-latest
     steps:
-     - uses: actions/checkout@v3
-     - name: nmp install and build webpack
+     - uses: actions/checkout@v2
+     - name: npm install and build webpack
        run: |
-        nmp install
-        nmp build
+        npm install
+        npm run build
      - uses: actions/upload-artifact@main
        with:
          name: webpack artifacts
-         path: public/
-         
-  test:
-   needs: build
-   runs-on: ubuntu-latest  
-   strategy:
+         path: public/         
+
+   test:
+    needs: build
+    runs-on: ubuntu-latest  
+    strategy:
       matrix:
         node-version: [12.x, 14.x]
         os: [ubuntu-latest, windows-latest]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-   steps:
-    - uses: actions/checkout@v3
-    - uses: actions/download-artifact@main
-      with:
-        name: webpack artifacts
-        path: public
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with: 
-        node-version:  ${{ matrix.node-version }}
-    - name:  nmp install and test
-      run: |
-        nmp install
-        nmo test
-      env:
-        CI: true
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@main
+        with:
+          name: webpack artifacts
+          path: public
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with: 
+         node-version: ${{ matrix.node-version }}
+      - name: npm install and test
+        run: |
+          npm install
+          npm test
+        env:
+         CI: true
       
        
