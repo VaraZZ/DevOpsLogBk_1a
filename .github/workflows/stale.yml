@@ -1,4 +1,4 @@
-# Warns and then closes issues and PRs that have had no activity for a specified amount of time.
+# Warns and then closes issues that have had no activity for a specified amount of time.
 name: 'Stale issue handler'
 on:
   workflow_dispatch:
